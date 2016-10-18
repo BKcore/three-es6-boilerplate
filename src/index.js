@@ -5,19 +5,19 @@ import {
   GridHelper
 } from 'three';
 
-import OrbitControls from '../libs/three/OrbitControls.js'
+import OrbitControls from '../libs/three/OrbitControls.js';
 
 class App {
   constructor(opts) {
-    this.width = opts.width | 1280;
-    this.height = opts.height | 720;
-    this.pixelRatio = opts.pixelRatio | 1;
+    this.width = opts.width || 1280;
+    this.height = opts.height || 720;
+    this.pixelRatio = opts.pixelRatio || 1;
     this.aspectRatio = this.width / this.height;
-    this.near = opts.near | 1;
-    this.far = opts.far | 1000;
-    this.fov = opts.fov | 90;
+    this.near = opts.near || 1;
+    this.far = opts.far || 1000;
+    this.fov = opts.fov || 90;
     this.dom = opts.dom;
-    this.time = performance.now();
+    this.time = performance.now() * 0.001;
 
     this.initRenderer();
     this.initCamera();
@@ -38,7 +38,7 @@ class App {
 
   onRequestAnimationFrame = () => {
     requestAnimationFrame(this.onRequestAnimationFrame);
-    let now = performance.now();
+    let now = performance.now() * 0.001;
     let dt = now - this.time;
     this.time = now;
     this.tick(dt);
